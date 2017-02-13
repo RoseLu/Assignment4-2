@@ -10,7 +10,7 @@ public class extraCredit {
 				if (nums[i] >= nums[j])
 					return null;
 			}
-		}
+		}//corner case
 		ArrayList<Integer> originalList = new ArrayList<Integer>();
 		ArrayList<Integer> missingList = new ArrayList<Integer>();
 		for (i = 0; i < nums.length; i++) {
@@ -72,8 +72,7 @@ public class extraCredit {
 	}
 
 	public static int thirdMax(int[] nums) {
-		int i, j, k, key;
-		int sameNumberCounter = 0;
+		int i, j, k;
 		int n = nums.length;
 		for (i = 0; i < n - 1; i++) { // generate a descend ordered array
 			for (j = i + 1; j < n; j++) {
@@ -84,26 +83,17 @@ public class extraCredit {
 				}
 			}
 		}
-		for (i = 0, key = 0; i < n - 1; i++) {
-			if (nums[i] == nums[i + 1]) {
-				sameNumberCounter++; // count the same number in an ordered array
-				key = i;// key is used to memorize the same number's index
-			} 
+		ArrayList<Integer> descendList = new ArrayList<Integer>();
+		for (i = 0; i < n; i++){
+			if(descendList.contains(nums[i])) {
+				continue;
+			}
+			descendList.add(nums[i]);//add distinct numbers into arrayList
 		}
-		if (n < 3 + sameNumberCounter)
-			return nums[0];// no third max number, return the max number
-		else {
-			if (key >= 2)
-				return nums[2]; // if the same number is after nums[2], it does
-								// no impact to the result, just input
-								// nums[2],which is the third one in this decend
-								// array
-			else
-				return nums[2 + sameNumberCounter];// if the same number is
-													// before nums[2], we have
-													// to consider about the
-													// same-number-counter
-		}
+		if (descendList.size() < 3)
+			return descendList.get(0);// no third max number, return the max number
+		else
+			return descendList.get(2);
 	}
 
 	public static void main(String[] args) {
@@ -111,20 +101,18 @@ public class extraCredit {
 		System.out.println(missingNumber(ls1));
 		int[] ls2 = { 1, 3, 9 };
 		System.out.println(missingNumber(ls2));
-		int[] ls3 = { 0, 2, 7, 4 };// wrong condition test: input not in an
-									// ascend order
+		int[] ls3 = { 0, 2, 7, 4 };// wrong input condition test: input not in an ascend order
 		System.out.println(missingNumber(ls3));
-		int[] ls4 = { 0, 2, 2, 4 };// wrong condition test: input not identical
+		int[] ls4 = { 0, 2, 2, 4 };// wrong input condition test: input not identical
 		System.out.println(missingNumber(ls4));
 
-		int[] mz1 = { 2, 4, 0, 8, 9, 0, 0, 2, 5 };// test the condition:multiple
-													// zeroes in the list
+		int[] mz1 = { 2, 4, 0, 8, 9, 0, 0, 2, 5 };// test the condition:multiple zeroes in the list
 		moveZeroes(mz1);
 		moveZeroes2(mz1);
 		int[] mz2 = { 0, 3, 4, 0, 2, 0, 0, 0, 4 };
 		moveZeroes(mz2);
 		moveZeroes2(mz2);
-		int[] tm1 = { 3, 2, 4, 2, 5, 6 };
+		int[] tm1 = { 3, 3, 4, 5, 5, 6 };
 		int[] tm2 = { 3, 2, 1 };
 		int[] tm3 = { 1, 2 };
 		int[] tm4 = { 2, 2, 3, 1 };
