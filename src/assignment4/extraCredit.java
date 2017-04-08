@@ -1,9 +1,16 @@
+/*score:
+9 + 2(extra credit)
+*/
+/*comments:
+I notice a large progress you made during these days, especially the comparison between assignment 3 and assignment 4. 
+Keep doing!
+*/
 package assignment4;
 
 import java.util.*;
 
 public class extraCredit {
-	public static ArrayList<Integer> missingNumber(int[] nums) {
+	public static ArrayList<Integer> missingNumber(int[] nums) {         //do not change the return type
 		int i, j;
 		for (i = 0; i < nums.length; i++) {
 			for (j = nums.length - 1; j > i; j--) {
@@ -26,7 +33,7 @@ public class extraCredit {
 		return missingList;
 	}
 
-	public static void moveZeroes(int[] nums) {
+	public static void moveZeroes(int[] nums) {                              //wrong. If nums is [0,1,0,3,12], your output has nothing change with the input
 		// below is an ArrayList method. If this is assumed to be the "copy
 		// array" method, you can move to next method of this function
 		int i;
@@ -50,7 +57,7 @@ public class extraCredit {
 	}
 
 	// below is method 2:
-	public static void moveZeroes2(int[] nums) {
+	public static void moveZeroes2(int[] nums) {         //correct
 		int i, j, k, counterZeroes = 0;
 		for (i = 0; i < nums.length - 1; i++) {
 			if (nums[i] == 0)
@@ -71,7 +78,7 @@ public class extraCredit {
 		System.out.println(" ");
 	}
 
-	public static int thirdMax(int[] nums) {
+	public static int thirdMax(int[] nums) {                       //correct
 		int i, j, k;
 		int n = nums.length;
 		for (i = 0; i < n - 1; i++) { // generate a descend ordered array
